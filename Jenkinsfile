@@ -15,15 +15,8 @@ pipeline {
         }
         stage('Build') {
             steps {
-                // Get some code from a GitHub repository
-                // not necessary, as checkout will be implicit after moving to scm pipeline
-                // git 'https://github.com/seraphictrip/jenkins-hello-world.git'
-
-                // Run Maven on a Unix agent.
                 sh "mvn clean package -DskipTests=true"
-
-                // To run Maven on a Windows agent, use
-                // bat "mvn -Dmaven.test.failure.ignore=true clean package"
+                archiveArtifacts 'target/hello-world-*.jar'
             }
         }
         stage('Unit Test') {
