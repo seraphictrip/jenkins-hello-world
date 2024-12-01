@@ -16,7 +16,8 @@ pipeline {
         stage('Build') {
             steps {
                 // Get some code from a GitHub repository
-                git 'https://github.com/seraphictrip/jenkins-hello-world.git'
+                // not necessary, as checkout will be implicit after moving to scm pipeline
+                // git 'https://github.com/seraphictrip/jenkins-hello-world.git'
 
                 // Run Maven on a Unix agent.
                 sh "mvn clean package -DskipTests=true"
